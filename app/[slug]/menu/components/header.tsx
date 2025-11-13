@@ -19,13 +19,13 @@ const RestaurantHeader = ({ restaurant }: RestaurantHeaderProps) => {
         <Button 
           variant="secondary" 
           size="icon" 
-          className="absolute bottom-4 left-4 rounded-full z-50"
+          className="absolute bottom-8 left-4 rounded-full z-50"
           onClick={handleBackClick}
         >
           <ChevronLeftIcon />
         </Button>
         <Image src={restaurant.coverImageUrl} fill alt={restaurant.name} className="object-cover" />
-        <Button variant="secondary" size="icon" className="absolute bottom-4 right-4 rounded-full z-50">
+        <Button variant="secondary" size="icon" className="absolute bottom-8 right-4 rounded-full z-50">
           <ScrollTextIcon />
         </Button>
       </div>
