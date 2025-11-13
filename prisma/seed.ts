@@ -8,13 +8,13 @@ const main = async () => {
     await tx.restaurant.deleteMany();
     const restaurant = await tx.restaurant.create({
       data: {
-        name: "Bomba Food",
-        slug: "bomba-food",
+        name: "Boy's Fast Food",
+        slug: "boys-fast-food",
         description: "O melhor fast food do mundo",
         avatarImageUrl:
-          "https://u9a6wmr3as.ufs.sh/f/jppBrbk0cChQvcNP9rHlEJu1vCY5kLqzjf29HKaeN78Z6pRy",
+          "https://cyqs77l9sw.ufs.sh/f/ccydBuzjU4R1QT8nDl5POastdfDxVh2ZC7MEkjoYH0Rw1pqK",
         coverImageUrl:
-          "https://u9a6wmr3as.ufs.sh/f/jppBrbk0cChQac8bHYlkBUjlHSKiuseLm2hIFzVY0OtxEPnw",
+          "https://cyqs77l9sw.ufs.sh/f/ccydBuzjU4R1GpzoAL3spyseIH2mCGa3wdXKAkSV14LYUjTb",
       },
     });
     const combosCategory = await tx.menuCategory.create({
