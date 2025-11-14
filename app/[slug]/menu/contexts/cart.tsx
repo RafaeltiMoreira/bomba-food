@@ -3,8 +3,7 @@
 import { Product } from "@/app/generated/prisma/client";
 import { createContext, ReactNode, useState } from "react";
 
-interface CartProduct
-  extends Pick<Product, "id" | "name" | "price" | "imageUrl"> {
+interface CartProduct extends Pick<Product, "id" | "name" | "price" | "imageUrl"> {
   quantity: number;
 }
 
@@ -48,6 +47,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       });
     });
   };
+  
   return (
     <CartContext.Provider
       value={{
