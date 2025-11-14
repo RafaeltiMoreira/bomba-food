@@ -4,7 +4,7 @@ import { Button } from "@/app/_components/ui/button";
 import { ScrollArea } from "@/app/_components/ui/scroll-area";
 import { Prisma } from "@/app/generated/prisma/client";
 import { formatCurrency } from "@/helpers/format-currency";
-import { ChefHatIcon, ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import { ChefHatIcon, MinusIcon, PlusIcon } from "lucide-react";
 import Image from "next/image";
 import { useContext, useState } from "react";
 import { CartContext } from "../../contexts/cart";
@@ -76,15 +76,15 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
               className="h-8 w-8 rounded-xl"
               onClick={handleDecreaseQuantity}
             >
-              <ChevronLeftIcon />
+              <MinusIcon />
             </Button>
             <p className="w-4">{quantity}</p>
             <Button
-              variant="destructive"
+              variant="success"
               className="h-8 w-8 rounded-xl"
               onClick={handleIncreaseQuantity}
             >
-              <ChevronRightIcon />
+              <PlusIcon />
             </Button>
           </div>
         </div>
