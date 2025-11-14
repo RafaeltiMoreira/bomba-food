@@ -28,7 +28,7 @@ const RestaurantMenuPage = async ({
   }
   
   return (
-    <div>
+    <div className="flex h-full flex-col">
       <RestaurantHeader restaurant={restaurant} />
       <RestaurantCategories restaurant={restaurant} />
     </div>
