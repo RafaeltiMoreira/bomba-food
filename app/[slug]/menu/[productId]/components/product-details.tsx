@@ -80,7 +80,7 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
             </Button>
             <p className="w-4">{quantity}</p>
             <Button
-              variant="success"
+              variant="default"
               className="h-8 w-8 rounded-xl"
               onClick={handleIncreaseQuantity}
             >
