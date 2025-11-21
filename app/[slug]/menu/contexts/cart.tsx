@@ -1,6 +1,6 @@
 "use client";
 
-import { Product } from "@/app/generated/prisma/client";
+import { Product } from "@prisma/client";
 import { createContext, ReactNode, useState } from "react";
 
 export interface CartProduct extends Pick<Product, "id" | "name" | "price" | "imageUrl"> {

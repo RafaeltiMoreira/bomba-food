@@ -1,4 +1,4 @@
-import { Product } from "@/app/generated/prisma/client";
+import { Product } from "@prisma/client";
 import { formatCurrency } from "@/helpers/format-currency";
 import Image from "next/image";
 import Link from "next/link";

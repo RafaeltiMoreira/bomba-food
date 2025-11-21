@@ -2,7 +2,7 @@ import Image from "next/image";
 import { Card, CardContent } from "../_components/ui/card";
 import { Button } from "../_components/ui/button";
 import Link from "next/link";
-import { ConsumptionMethod } from "../generated/prisma/enums";
+import { ConsumptionMethod } from "@prisma/client";
 
 interface ConsumptionMethodOptionProps {
   slug: string;

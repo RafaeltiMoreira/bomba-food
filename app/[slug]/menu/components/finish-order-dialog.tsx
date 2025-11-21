@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ConsumptionMethod } from "@/app/generated/prisma/enums";
+import { ConsumptionMethod } from "@prisma/client";
 //import { loadStripe } from "@stripe/stripe-js";
 import { useParams, useSearchParams } from "next/navigation";
 import { useContext, useTransition } from "react";
