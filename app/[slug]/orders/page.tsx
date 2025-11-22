@@ -36,8 +36,40 @@ const OrdersPage = async ({ searchParams }: OrdersPageProps) => {
       },
     },
   });
+
+  const mappedOrders = orders.map((order) => ({
+    id: String(order.id),
+    status: order.status,
+    createdAt: order.createdAt,
+    updatedAt: order.updatedAt,
+    customerCpf: order.customerCpf,
+    total: order.total,
+    consumptionMethod: order.consumptionMethod,
+
+    restaurant: {
+      name: order.restaurant.name,
+      avatarImageUrl: order.restaurant.avatarImageUrl,
+    },
+    orderProducts: order.orderProducts.map((op) => ({
+      id: String(op.id),
+      quantity: op.quantity,
+      product: {
+        id: op.product.id,
+        name: op.product.name,
+        description: op.product.description,
+        price: op.product.price,
+        imageUrl: op.product.imageUrl,
+        restaurantId: op.product.restaurantId,
+        ingredients: op.product.ingredients,
+        menuCategoryId: op.product.menuCategoryId,
+        createdAt: op.product.createdAt,
+        updatedAt: op.product.updatedAt,
+      },
+    })),
+  }));
+
   return ( 
-    <OrderList orders={orders} />
+    <OrderList orders={mappedOrders} />
    );
 }
  
