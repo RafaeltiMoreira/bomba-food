@@ -2,7 +2,7 @@
 
 import { Button } from "@/app/_components/ui/button";
 import { ScrollArea, ScrollBar } from "@/app/_components/ui/scroll-area";
-import { Prisma } from "@/app/generated/prisma";
+import { Prisma } from "@prisma/client";
 import { ClockIcon } from "lucide-react";
 import Image from "next/image";
 import { useContext, useState } from "react";

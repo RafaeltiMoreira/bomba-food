@@ -2,7 +2,7 @@
 
 import { Button } from "@/app/_components/ui/button";
 import { ScrollArea } from "@/app/_components/ui/scroll-area";
-import { Prisma } from "@/app/generated/prisma";
+import { Prisma } from "@prisma/client";
 import { formatCurrency } from "@/helpers/format-currency";
 import { ChefHatIcon, MinusIcon, PlusIcon } from "lucide-react";
 import Image from "next/image";

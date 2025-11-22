@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { db } from "@/lib/prisma";
 
 import { removeCpfPunctuation } from "../helpers/cpf";
-import { ConsumptionMethod } from "@/app/generated/prisma";
+import { ConsumptionMethod } from "@prisma/client";
 
 interface CreateOrderInput {
   customerName: string;

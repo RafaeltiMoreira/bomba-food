@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ConsumptionMethod } from "@/app/generated/prisma";
+import { ConsumptionMethod } from "@prisma/client";
 import { useParams, useSearchParams } from "next/navigation";
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";

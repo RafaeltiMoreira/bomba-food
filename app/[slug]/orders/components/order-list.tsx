@@ -1,6 +1,6 @@
 "use client";
 
-import { OrderStatus, Prisma } from "@/app/generated/prisma";
+import { OrderStatus, Prisma } from "@prisma/client";
 import { ChevronLeftIcon, ScrollTextIcon } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
