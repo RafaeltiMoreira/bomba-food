@@ -1,4 +1,4 @@
-import { Product } from "@prisma/client";
+import { Product } from "@/app/generated/prisma";
 import { formatCurrency } from "@/helpers/format-currency";
 import Image from "next/image";
 import Link from "next/link";
@@ -33,6 +33,8 @@ const Products = ({ products }: ProductsProps) => {
               alt={product.name} 
               fill 
               className="rounded-lg object-contain"
+              sizes="auto"
+              loading="eager"
             />
           </div>
         </Link>

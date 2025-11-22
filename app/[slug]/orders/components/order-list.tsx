@@ -1,6 +1,6 @@
 "use client";
 
-import { OrderStatus, Prisma } from "@prisma/client";
+import { OrderStatus, Prisma } from "@/app/generated/prisma";
 import { ChevronLeftIcon, ScrollTextIcon } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -34,7 +34,7 @@ const getStatusLabel = (status: OrderStatus) => {
   if (status === "FINISHED") return "Finalizado";
   if (status === "IN_PREPARATION") return "Em preparo";
   if (status === "PENDING") return "Pendente";
-  if (status === "CANCELLED") return "Pedido cancelado";
+  if (status === "EXPIRED") return "Pagamento expirado";
   if (status === "PAYMENT_CONFIRMED") return "Pagamento confirmado";
   if (status === "PAYMENT_FAILED") return "Pagamento falhou";
   return "";
@@ -59,7 +59,7 @@ const OrderList = ({ orders }: OrderListProps) => {
       </div>
       {orders.map((order) => (
         <Card key={order.id}>
-          <CardContent className="space-y-4 p-5">
+          <CardContent className="space-y-4 p-4">
             <div
               className={`w-fit rounded-full px-2 py-1 text-xs font-semibold text-white ${([OrderStatus.PAYMENT_CONFIRMED, OrderStatus.FINISHED] as OrderStatus[]).includes(order.status) ? "bg-green-500 text-white" : "bg-gray-200 text-gray-500"} `}
             >
@@ -72,6 +72,8 @@ const OrderList = ({ orders }: OrderListProps) => {
                   alt={order.restaurant.name}
                   className="rounded-sm"
                   fill
+                  sizes="auto"
+                  loading="eager"
                 />
               </div>
               <p className="text-sm font-semibold">{order.restaurant.name}</p>

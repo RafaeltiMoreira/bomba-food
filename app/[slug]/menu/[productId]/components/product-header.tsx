@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/app/_components/ui/button";
-import { Product } from "@prisma/client";
+import { Product } from "@/app/generated/prisma";
 import { ChevronLeftIcon, ScrollTextIcon } from "lucide-react";
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
@@ -26,7 +26,7 @@ const ProductHeader = ({ product }: ProductHeaderProps) => {
         >
           <ChevronLeftIcon />
         </Button>
-        <Image src={product.imageUrl} alt={product.name} fill className="object-contain" />
+        <Image src={product.imageUrl} alt={product.name} fill className="object-contain" sizes="auto" loading="eager" />
         <Button 
           variant="secondary" 
           size="icon" 

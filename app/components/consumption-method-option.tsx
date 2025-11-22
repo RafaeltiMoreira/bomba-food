@@ -28,10 +28,12 @@ const ConsumptionMethodOption = ({
             fill
             alt={imageAlt}
             className="object-contain"
+            sizes="auto"
+            loading="eager"
           />
         </div>
         <Button variant="secondary" className="rounded-full" asChild>
-          <Link href={`/${slug}/menu?consumptionMethod=${option}`}>
+          <Link rel="preload" href={`/${slug}/menu?consumptionMethod=${option}`}>
             {buttonText}
           </Link>
         </Button>

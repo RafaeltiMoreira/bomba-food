@@ -2,7 +2,7 @@
 
 import { Button } from "@/app/_components/ui/button";
 import { ScrollArea } from "@/app/_components/ui/scroll-area";
-import { Prisma } from "@prisma/client";
+import { Prisma } from "@/app/generated/prisma";
 import { formatCurrency } from "@/helpers/format-currency";
 import { ChefHatIcon, MinusIcon, PlusIcon } from "lucide-react";
 import Image from "next/image";
@@ -57,6 +57,8 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
             width={28}
             height={28}
             className="rounded-full"
+            sizes="auto"
+            loading="eager"
           />
           <p className="text-muted-foreground text-xs">
             {product.restaurant.name}

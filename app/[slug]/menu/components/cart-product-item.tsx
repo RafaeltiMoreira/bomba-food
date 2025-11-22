@@ -13,9 +13,9 @@ const CartProductItem = ({ product }: CartItemProps) => {
     useContext(CartContext);
   return (
     <div className="flex items-center justify-center">
-      <div className="flex items-center gap-10">
+      <div className="flex items-center gap-10 mb-4">
         <div className="relative h-20 w-20 rounded-xl bg-gray-100">
-          <Image src={product.imageUrl} alt={product.name} fill />
+          <Image src={product.imageUrl} alt={product.name} fill sizes="auto" loading="eager" className="object-contain" />
         </div>
         <div className="space-y-1">
           <p className="max-w-[90%] truncate text-ellipsis text-xs">

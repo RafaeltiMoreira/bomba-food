@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@/app/generated/prisma";
 
 const prisma = new PrismaClient();
-
 const main = async () => {
   await prisma.$transaction(async (tx: any) => {
     await tx.restaurant.deleteMany();

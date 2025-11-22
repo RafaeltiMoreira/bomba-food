@@ -1,10 +1,9 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ConsumptionMethod } from "@prisma/client";
-//import { loadStripe } from "@stripe/stripe-js";
+import { ConsumptionMethod } from "@/app/generated/prisma";
 import { useParams, useSearchParams } from "next/navigation";
-import { useContext, useTransition } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { PatternFormat } from "react-number-format";
 import { z } from "zod";
@@ -30,12 +29,12 @@ import {
 } from "@/app/_components/ui/form";
 import { Input } from "@/app/_components/ui/input";
 
-//import { createStripeCheckout } from "../actions/create-stripe-checkout";
 import { CartContext } from "../contexts/cart";
 import { isValidCpf } from "../helpers/cpf";
 import { createOrder } from "../actions/create-order";
-import { toast } from "sonner";
+// import { toast } from "sonner";
 import { Loader2Icon } from "lucide-react";
+import { createStripeCheckout } from "../actions/create-stripe-checkout";
 
 const formSchema = z.object({
   name: z.string().trim().min(1, {
@@ -63,9 +62,8 @@ const FinishOrderDialog = ({ open, onOpenChange }: FinishOrderDialogProps) => {
   const { slug } = useParams<{ slug: string }>();
   const { products } = useContext(CartContext);
   const searchParams = useSearchParams();
-  const [isPending, startTransition] = useTransition();
+  const [isLoading, setIsLoading] = useState(false);
 
-  // const [isLoading, setIsLoading] = useState(false);
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -76,48 +74,38 @@ const FinishOrderDialog = ({ open, onOpenChange }: FinishOrderDialogProps) => {
   });
   const onSubmit = async (data: FormSchema) => {
     try {
-      // setIsLoading(true);
+      setIsLoading(true);
       const consumptionMethod = searchParams.get(
         "consumptionMethod",
       ) as ConsumptionMethod;
 
-      // const order =
-      startTransition(async () => {
-        await createOrder({
-          consumptionMethod,
-          customerCpf: data.cpf,
-          customerName: data.name,
-          products,
-          slug,
-        });
-        onOpenChange(false);
-        toast.success("Pedido finalizado com sucesso!");
+      const order = await createOrder({
+        consumptionMethod,
+        customerCpf: data.cpf,
+        customerName: data.name,
+        products,
+        slug,
       });
-
-      // const { sessionId } = await createStripeCheckout({
-      //   products,
-      //   orderId: order.id,
-      //   slug,
-      //   consumptionMethod,
-      //   cpf: data.cpf,
-      // });
-      //   if (!process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY) return;
-      //   const stripe = await loadStripe(
-      //     process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY,
-      //   );
-      //   stripe?.redirectToCheckout({
-      //     sessionId: sessionId,
-      //   });
+      const { url } = await createStripeCheckout({
+        products,
+        slug,
+        consumptionMethod,
+        orderId: order.id,
+        cpf: data.cpf,
+      });
+      if (url) {
+        window.location.href = url;
+      }
     } catch (error) {
-      console.error(error);
-    } //finally {
-    // setIsLoading(false);
-    //}
+      console.error("Erro ao finalizar pedido:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
   return (
     <Drawer open={open} onOpenChange={onOpenChange}>
       <DrawerTrigger asChild></DrawerTrigger>
-      <DrawerContent>
+      <DrawerContent aria-describedby={undefined}>
         <DrawerHeader>
           <DrawerTitle>Finalizar Pedido</DrawerTitle>
           <DrawerDescription>
@@ -164,11 +152,10 @@ const FinishOrderDialog = ({ open, onOpenChange }: FinishOrderDialogProps) => {
                   type="submit"
                   variant="destructive"
                   className="rounded-full"
-                  // disabled={isLoading}
-                  disabled={isPending}
+                  disabled={isLoading}
                 >
-                  {/*isLoading && <Loader2Icon className="animate-spin" />*/}
-                  {isPending && <Loader2Icon className="animate-spin" />}
+                  {isLoading && <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />}
+                  {/* {isPending && <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />} */}
                   Finalizar
                 </Button>
                 <DrawerClose asChild>

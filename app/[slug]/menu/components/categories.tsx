@@ -2,7 +2,7 @@
 
 import { Button } from "@/app/_components/ui/button";
 import { ScrollArea, ScrollBar } from "@/app/_components/ui/scroll-area";
-import { Prisma } from "@prisma/client";
+import { Prisma } from "@/app/generated/prisma";
 import { ClockIcon } from "lucide-react";
 import Image from "next/image";
 import { useContext, useState } from "react";
@@ -49,6 +49,8 @@ const RestaurantCategories = ({ restaurant }: RestaurantCategoriesProps) => {
             width={45}
             height={45}
             className="rounded-lg"
+            sizes="auto"
+            loading="eager"
           />
           <div>
             <h2 className="text-lg font-semibold">{restaurant.name}</h2>
